@@ -76,11 +76,15 @@ async def async_main():
         fetch_users_data(),
         fetch_posts_data(),
     )
+
+    posts_offset = len(posts_data) // len(users_data)
+
     async with Session() as session:
         users = await create_users(session, users_data)
-
+        offset = 0
         for user in users:
-            await create_posts(session, user.id, posts_data)
+            await create_posts(session, user.id, posts_data[offset:offset + posts_offset])
+            offset += posts_offset
 
 
 def main():
