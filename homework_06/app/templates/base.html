@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link
+            href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+            rel="stylesheet"
+    >
+    <title>
+      {% block title %}
+        base title
+      {% endblock %}
+    </title>
+  </head>
+  <body>
+    {% include 'components/navbar.html' %}
+    {% block body %}
+      base body
+    {% endblock %}
+    <footer class="bg-light text-center py-4">
+        <p>&copy; 2023 My Website. All rights reserved.</p>
+    </footer>
+    <script
+            src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"
+    ></script>
+    <script>
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+      })
+    </script>
+  </body>
+</html>
